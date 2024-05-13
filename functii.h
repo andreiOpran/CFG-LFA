@@ -85,15 +85,21 @@ vector<string> getSectionList(vector<string> content)
 
 vector<string> getSectionContent(vector<string> content, string sectionName)
 {
+	int nrReguli = 0;
+	bool inserareNrReguli = false;
+
 	vector<string> sectionContent;
 	bool variabile = false, regula = false, alfabet = false;
+	
+	sectionName = sectionName.substr(0, sectionName.size() - 1);
+	
 	for (int i = 0; i < content.size(); i++)
 	{
-		if (content[i] == sectionName + ":V")
+		if (content[i] == sectionName + "V")
 			variabile = true;
-		if (content[i] == sectionName + ":R")
+		if (content[i] == sectionName + "R")
 			regula = true;
-		if (content[i] == sectionName + ":A")
+		if (content[i] == sectionName + "A")
 			alfabet = true;
 
 		bool gasitSteluta = false;
@@ -135,6 +141,10 @@ vector<string> getSectionContent(vector<string> content, string sectionName)
 							{
 								sectionContent.push_back(aux);
 								sectionContent.push_back("-");
+								
+								nrReguli++;
+								inserareNrReguli = true;
+								
 								primulAux = true;
 							}
 							else
@@ -152,5 +162,8 @@ vector<string> getSectionContent(vector<string> content, string sectionName)
 			}
 		}
 	}
+	if (inserareNrReguli)
+		sectionContent.push_back(to_string(nrReguli));
+
 	return sectionContent;
 }
