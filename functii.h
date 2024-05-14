@@ -127,8 +127,6 @@ vector<string> getSectionContent(vector<string> content, string sectionName)
 				}
 				if (regula)
 				{
-					
-
 					istringstream ss(content[i]);
 					string aux;
 					
