@@ -8,8 +8,6 @@
 
 using namespace std;
 
-
-
 vector<string> loadFile(string numeFisier)
 {
 	ifstream fin(numeFisier);
