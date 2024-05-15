@@ -75,6 +75,7 @@ int main()
 
 	for (int i = 0; i < rez.size(); i++)
 	{
+
 		rezEsteVar = false;
 		for (int j = 0; j < variabile.size(); j++)
 		{
@@ -95,22 +96,20 @@ int main()
 				if (reguli[index - 1] == rez[i])
 					gasitRegula = true;
 			}
-			if (index != -1)
-			{
-				index++;
+			//cout << index;
+			index++;
+			//cout << "\n reguli[index] " << reguli[index] << endl;
+			//cout << "\n reguli[index + 1] " << reguli[index + 1] << endl;
 
-				while (index < reguli.size())
-				{
-					if(reguli[index] == "-")
-						break;
-					else
-					{
-						rez.insert(rez.begin() + i, reguli[index]);
-						index++;
-					}
-					
-				}
+			while (reguli[index] != "-")
+			{				
+				cout << "\n" << reguli[index] << endl;
+				rez.insert(rez.begin() + i, reguli[index]);
+				index++;	
+				if (reguli[index + 1] == "-")
+					break;
 			}
+			
 			
 		}
 		else
@@ -121,6 +120,8 @@ int main()
 		
 	}
 
+	
+
 	for (int i = 0; i < rez.size(); i++)
 		cout << rez[i];
 ;
@@ -129,4 +130,4 @@ int main()
 }
 
 // REGULI 
-// A - 0 A 1 A - 0 1
+// A - 0 A 1 A - 0 1 - 

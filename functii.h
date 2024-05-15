@@ -161,7 +161,10 @@ vector<string> getSectionContent(vector<string> content, string sectionName)
 		}
 	}
 	if (inserareNrReguli)
+	{
+		sectionContent.push_back("-");
 		sectionContent.push_back(to_string(nrReguli));
+	}
 
 	return sectionContent;
 }
