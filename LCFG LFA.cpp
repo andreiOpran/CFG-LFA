@@ -109,18 +109,18 @@ int main()
 					break;
 			}
 			rez.erase(rez.begin() + i); // stergem variabila din vectorul rezultat
-			for (int a = 0; a < aux.size(); a++) // adaugam elementele regulei selectate random in vectorul rezultat
+			for (int a = aux.size() - 1; a >= 0; a--) // adaugam elementele regulei selectate random in vectorul rezultat
 				rez.insert(rez.begin() + i, aux[a]);
-
+		
 		}
 		else
 		{
-			i = rez.size() + 2; // daca rez[i] nu este variabila, iesim din for
+			continue;
 		}
 		
 		
 	}
-
+	
 	for (int i = 0; i < rez.size(); i++) // afisare rezultat
 		cout << rez[i];
 
