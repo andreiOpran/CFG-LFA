@@ -20,7 +20,7 @@ int gasireCratimaN(vector <string> vector, int n) // functie care gaseste al n l
 }
 
 
-bool existaFisier(const string& numeFisier)
+bool existaFisier(const string& numeFisier) // functie care verifica daca fisierul exista in folder
 {
 	ifstream file(numeFisier);
 	return file.good();
@@ -29,11 +29,11 @@ bool existaFisier(const string& numeFisier)
 
 int main()
 {
-	int aplicatReguli = 0;
-	bool afisatMesajProcesare = false;
+	int aplicatReguli = 0; // pt loop infinit
+	bool afisatMesajProcesare = false; // pt loop infinit
 
 	string numeFisier;
-	while (true)
+	while (true) // citirea numelui fisierului de intrare
 	{
 		try
 		{
@@ -54,9 +54,9 @@ int main()
 	}
 
 	bool fisierValid = false;
-	fisierValid = validareFisier(numeFisier);
+	fisierValid = validareFisier(numeFisier); // validare fisier
 
-	if (fisierValid)
+	if (fisierValid) // daca fisierul este valid, se incarca continutul si se prelucreaza
 	{
 		vector <string> content = loadFile(numeFisier);
 		vector <string> sectionList = getSectionList(content);
@@ -149,13 +149,13 @@ int main()
 					rez.insert(rez.begin() + i, aux[a]);
 
 				aplicatReguli++;
-				if (aplicatReguli > 3000 && !afisatMesajProcesare)
+				if (aplicatReguli > 3000 && !afisatMesajProcesare) // afisare mesaj de procesare in cazul in care aplicam reguli de 3000 de ori
 				{
 					cout << "\nProcesare CFG...\n";
 					afisatMesajProcesare = true;
 				}
 
-				if (aplicatReguli > 10000)
+				if (aplicatReguli > 10000) // oprire program in cazul in care aplicam reguli de 10.000 de ori, cel mai probabil semnifica un loop infinit
 				{
 					cout << "\nProgramul a fost oprit deoarece s-au aplicat mai mult de 10.000 reguli.\n";
 					cout << "Cel mai probabil exista o variabila care nu are cel putin o regula care contine doar litere din alfabet.\n";

@@ -1,6 +1,6 @@
 #pragma once
 
-bool stringInVector(string x, vector <string> vector)
+bool stringInVector(string x, vector <string> vector) // o functie care verifica daca un string se afla intr-un vector de stringuri
 {
 	bool rez = false;
 	for (string s : vector)
@@ -28,25 +28,25 @@ bool validareFisier(string numeFisier)
 	int cont;
 
 	vector<string> content, sectionList, variabile, sigma, reguli;
-	content = loadFile(numeFisier);
-	sectionList = getSectionList(content);
+	content = loadFile(numeFisier); // incarcam continutul fisierului in vectorul content
+	sectionList = getSectionList(content); // obtinem lista cu sectiunile din fisier
 
-	if (sectionList.size() != 3)
+	if (sectionList.size() != 3) // verificam daca fisierul are 3 sectiuni
 	{
 		cout << "\nFisierul " << numeFisier << " nu are 3 sectiuni.\n";
 		return false;
 	}
 
-	variabile = getSectionContent(content, sectionList[0]);
-	sigma = getSectionContent(content, sectionList[1]);
-	reguli = getSectionContent(content, sectionList[2]);
+	variabile = getSectionContent(content, sectionList[0]); // obtinem continutul sectiunii cu variabile
+	sigma = getSectionContent(content, sectionList[1]); // obtinem continutul sectiunii cu alfabet
+	reguli = getSectionContent(content, sectionList[2]); // obtinem continutul sectiunii cu reguli
 
 	// verificare existenta variabila start sau daca exista mai multe variabile de start
 	ok = false;
 	cont = 0;
 	for (string variabila : variabile)
 	{
-		if (variabila == "*")
+		if (variabila == "*") // contorizam cate variabile de start avem
 			++cont;
 	}
 	if (cont == 0)
@@ -108,7 +108,7 @@ bool validareFisier(string numeFisier)
 	{
 		if (reguli[i] != "-")
 		{
-			if (!stringInVector(reguli[i], variabile) && !(stringInVector(reguli[i], sigma)))
+			if (!stringInVector(reguli[i], variabile) && !(stringInVector(reguli[i], sigma))) // verificam daca elementul din reguli exista in variabile sau in sigma
 			{
 				cout << "\nElementul " << reguli[i] << " din reguli nu exista in variabile sau in alfabet.\n";
 				return false;
@@ -121,10 +121,32 @@ bool validareFisier(string numeFisier)
 	// aceasta verificare o vom face in emularea propriu zisa a CFG ului in cpp-ul principal
 	// prin a contoriza numarul de reguli aplicate, iar daca aplicam reguli
 	// de mai mult de 10.000 de ori se va termina programul si se va afisa un mesaj corespunzator
-	// iar daca se aplica 3000 de reguli se afiseaza un measj de procesare
-	// astfel avem o limita de 10.000 de reguli care se pot aplica
+	// iar daca se aplica 3000 de reguli se afiseaza un measaj de procesare
+	// astfel avem o limita de 10.000 de reguli care se pot aplica.
 	// pe calculatorul meu dureaza in jur de 15 secunde sa aplice 10.000 de reguli
 	
+	// verificare daca exista reguli care nu incep cu o variabila
+	
+	// tratam cazul primei reguli separat deoarece prima regula nu are "-" in fata, la fel ca celelalte reguli
+	// elementele "-" din fata regulilor sunt folosite pentru a separa regulile si sunt introduse automat in prelucrarea fisierului
+	if (!stringInVector(reguli[0], variabile)) 
+	{
+		cout << "\nPrima regula nu incepe cu o variabila.\n";
+		return false;
+	}
+	for (int i = 2; i < reguli.size() - 1; i++)
+	{
+		if (reguli[i] == "-" && reguli[i-2] == "-")
+		{
+			if (!stringInVector(reguli[i - 1], variabile))
+			{
+				cout << endl << reguli[i - 1] << endl;
+				cout << "\nO regula nu incepe cu o variabila.\n";
+				return false;
+			}
+		}
+	}
+
 	cout << "\nFisierul " << numeFisier << " este valid.\n\n";
 	return true;
 }
