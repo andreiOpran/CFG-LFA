@@ -41,6 +41,10 @@ bool validareFisier(string numeFisier)
 	sigma = getSectionContent(content, sectionList[1]); // obtinem continutul sectiunii cu alfabet
 	reguli = getSectionContent(content, sectionList[2]); // obtinem continutul sectiunii cu reguli
 
+	for (string s : variabile
+		)
+		cout << s << ' ';
+
 	// verificare existenta variabila start sau daca exista mai multe variabile de start
 	ok = false;
 	cont = 0;

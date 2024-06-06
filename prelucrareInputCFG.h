@@ -132,6 +132,10 @@ vector<string> getSectionContent(vector<string> content, string sectionName)
 						else
 							sectionContent.push_back("0"); // altfel adaugam 0 ca un fel de default
 					}
+					/*
+					exemplu formatare variabile:
+					A * B 0
+					*/
 				}
 				if (regula)
 				{
@@ -159,11 +163,19 @@ vector<string> getSectionContent(vector<string> content, string sectionName)
 							}
 						}
 					}
+					/*
+					exemplu formatare reguli (2 de pe ultima pozitie este nr de reguli ce va fi inserat la sfarsit inainte de return):
+					A - 0 A 1 A - 0 1 - 2
+					*/
 				}
 				if (alfabet) // daca avem alfabet, doar adaugam elementele in vector
 				{
 					if (content[i] != "End")
 						sectionContent.push_back(content[i]);
+					/*
+					exemplu formatare alfabet:
+					0 1
+					*/
 				}
 			}
 		}
