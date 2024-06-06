@@ -24,7 +24,7 @@ vector<string> loadFile(string numeFisier)
 	bool gasitRegula = false;
 	for (int i = 0; i < fisier.size(); i++)
 	{
-		if (fisier[i][fisier[i].size() - 1] == ':')
+		if (!fisier[i].empty() && fisier[i][fisier[i].size() - 1] == ':')
 		{
 			gasitRegula = false;
 			gasitVars = false;
