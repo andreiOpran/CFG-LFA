@@ -1,31 +1,42 @@
-# Emulator CFG
+# Context Free Grammar Emulator
 
 <br>
 
-## Reguli de formatare al fisierului text de input:
+Context-Free Grammar (CFG) is a formal grammar used to describe the syntax or structure of a formal language. 
 
- - fisierul trebuie sa contina 3 sectiuni: variabile, alfabetul si regulile, introduse in orice ordine, dar trebuie sa urmeze anumite formatari si sa fie intorduse o singura data.
- - pentru sectiunea de variabile, fiecare rand va fi ocupat de catre o variabila, iar in cazul in care variabila este cea de start se va scrie astfel: "nume_variabila,*". In sectiunea de variabile trebuie sa exista fix o variabila de start. Nu pot exista dubluri.
- - pentru sectiunea alfabetului, pe fiecare rand se va regasi o litera a alfabetului. Nu pot exista dubluri.
- - pentru sectiunea de reguli, pe prima pozitie se va regasi o variabila, iar dupa aceasta, separate prin virgula vor fi variabile sau litere din alfabet. Exemplu: "variabila_1,litera_1,variabila_2,litera_2".
- - o sectiune incepe cu "HeaderSectiune:" unde "HeaderSectiune" poate fi orice sir, si dupa ce se introduc datele conform formatarii de mai sus, pe ultima linie se introduce "End".  
- - comentariile sunt semnalate prin "#" la inceputul liniei.
+It consists of four tuples: **(V, T, P, S)**:
 
-<br>
-
-### Validarea fisierului consta in:
-
-- verificare existenta variabila start sau daca exista mai multe variabile de start
-- verificare daca exista o variabila care este egala cu o litera din alfabet
-- verificare dubluri in variabile
-- verificare dubluri in alfabet
-- verificare daca fiecare element din reguli exista in variabile sau in sigma
-- verificare daca exista reguli care nu incep cu o variabila
-- prevenirea unui loop infinit cauzat reguli in care o variabila nu ajunge sa fie niciodata schimbata cu un sir de litere din alfabet, ci doar cu ea insasi.
+- **V**: The collection of **variables** or **non-terminal symbols**.
+- **T**: The set of **terminals** (the basic symbols from which strings are formed).
+- **P**: The **production rules** that consist of both terminals and non-terminals.
+- **S**: The **starting symbol**, from which derivation begins.
 
 <br>
 
-## Exemplu fisier de input:
+## Formatting Rules for the Input Text File:
+
+- The file must contain **three sections**: variables, the alphabet, and the rules. These sections can be in any order but must follow specific formatting rules and appear only once.
+- In the **variables section**, each line should contain a variable. If the variable is the starting variable, it should be written as: `"variable_name,*"`. This section must include exactly one starting variable. Duplicate variables are not allowed.
+- In the **alphabet section**, each line should contain a single letter of the alphabet. Duplicate entries are not allowed.
+- In the **rules section**, the first position of each line should contain a variable, followed by variables or alphabet letters separated by commas. Example: `"variable_1,letter_1,variable_2,letter_2"`.
+- A section begins with `"SectionHeader:"`, where `"SectionHeader"` can be any string. After the data is introduced in the specified format, the last line of the section should contain `"End"`.
+- Comments are marked with a `"#"` at the beginning of the line.
+
+<br>
+
+### File Validation Includes:
+
+- Checking if a starting variable exists or if there are multiple starting variables.
+- Verifying that no variable is identical to a letter in the alphabet.
+- Checking for duplicate entries in the variables.
+- Checking for duplicate entries in the alphabet.
+- Ensuring that every element in the rules exists either in the variables or in the alphabet.
+- Verifying that every rule starts with a variable.
+- Preventing infinite loops caused by rules where a variable never gets replaced with a string of letters from the alphabet but only with itself.
+
+<br>
+
+## Example of an input File:
 
 <br>
 
