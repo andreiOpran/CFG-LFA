@@ -2,14 +2,11 @@
 
 <br>
 
-Context-Free Grammar (CFG) is a formal grammar used to describe the syntax or structure of a formal language. 
+Designed to produce random sentences based on a specified Context-Free Grammar, this C++ project reads and
+processes grammar rules from a file, then applies them iteratively to generate valid strings. It uses randomness
+(Mersenne Twister algorithm) to select applicable rules, ensuring varied sentence outputs. Error handling is included
+to prevent infinite loops, and the program ends processing if it detects excessive rule applications.
 
-It consists of four tuples: **(V, T, P, S)**:
-
-- **V**: The collection of **variables** or **non-terminal symbols**.
-- **T**: The set of **terminals** (the basic symbols from which strings are formed).
-- **P**: The **production rules** that consist of both terminals and non-terminals.
-- **S**: The **starting symbol**, from which derivation begins.
 
 <br>
 
